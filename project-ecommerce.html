@@ -288,6 +288,14 @@
             }
         }
 
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            color: var(--dark);
+            cursor: pointer;
+            z-index: 1001;
+        }
+
         @media (max-width: 992px) {
             .project-content {
                 grid-template-columns: 1fr;
@@ -301,6 +309,37 @@
                 flex-direction: column;
                 gap: 15px;
                 align-items: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                text-align: center;
+                padding: 20px 0;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: var(--transition);
+                display: flex;
+            }
+
+            nav.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 20px;
             }
         }
 
@@ -356,7 +395,10 @@
 <body>
     <header>
         <a href="index.html" class="logo">HAFIIDH Portofolio</a>
-        <nav>
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <nav id="nav-menu">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#portfolio" class="active">Portfolio</a></li>
@@ -366,7 +408,7 @@
     </header>
 
     <section class="project-hero">
-        <h1>E-Commerce Web</h1>
+        <h1>System Inventory Toko</h1>
         <div class="project-meta">
             <div class="meta-item"><i class="fa-solid fa-folder"></i><span>Web Application</span></div>
             <div class="meta-item"><i class="fa-solid fa-calendar"></i><span>2025</span></div>
@@ -409,21 +451,20 @@
     <section class="project-content">
         <div class="content-main">
             <h2>Tentang Proyek</h2>
-            <p>Proyek E-Commerce Web ini adalah sebuah platform belanja online modern yang dirancang dengan antarmuka
-                yang bersih, intuitif, dan sangat fokus pada pengalaman pengguna (UX) untuk meningkatkan tingkat
-                konversi (conversion rate).</p>
-            <p>Fokus utama dari pengembangan frontend ini adalah untuk membuat navigasi produk yang cepat, sistem
-                keranjang belanja (cart) yang mulus, dan proses checkout yang mudah. Desain sepenuhnya responsif,
-                memastikan pengguna dari berbagai perangkat mulai dari mobile hingga desktop mendapatkan pengalaman
-                belanja yang sama nyamannya.</p>
+            <p>Website Inventory ini adalah sebuah platform manajemen stok barang yang dirancang dengan antarmuka
+                yang bersih, intuitif, dan difokuskan pada pemantauan pergerakan barang (in/out) secara real-time
+                untuk meningkatkan efisiensi operasional.</p>
+            <p>Fokus utama dari pengembangan sistem ini adalah pencatatan stok yang akurat, sistem
+                kategorisasi produk yang terstruktur, serta pelaporan transaksi yang detail. Desain sepenuhnya responsif,
+                memastikan staf dan admin dapat mengelola dan memantau stok dari berbagai perangkat, mulai dari mobile hingga desktop.</p>
 
             <h3 style="margin-top: 40px; margin-bottom: 20px; font-size: 24px;">Fitur Utama</h3>
             <ul class="features-list">
-                <li>Katalog Produk Dinamis dengan Filter & Pencarian</li>
-                <li>Sistem Keranjang Belanja Interaktif (State Management)</li>
-                <li>Halaman Checkout Terintegrasi</li>
-                <li>Desain Antarmuka Modern & Minimalis</li>
-                <li>Optimisasi Kecepatan Muat Halaman (Lazy Loading)</li>
+                <li>Dashboard Monitoring Stok secara Real-time</li>
+                <li>Manajemen Produk dan Kategori (CRUD)</li>
+                <li>Pencatatan Transaksi Barang Masuk & Keluar</li>
+                <li>Desain Antarmuka Modern & Minimalis (Dark Mode UI)</li>
+                <li>Sistem Pencarian dan Filter Data yang Cepat</li>
             </ul>
         </div>
         <div class="sidebar">
@@ -495,6 +536,16 @@
             showSlides(slideIndex);
             slideInterval = setInterval(() => showSlides(), 4000);
         });
+
+        // Mobile menu toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+
+        if(mobileMenu) {
+            mobileMenu.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        }
     </script>
 </body>
 

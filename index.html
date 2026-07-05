@@ -683,6 +683,14 @@
         }
 
         /* Responsive Design */
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            color: var(--dark);
+            cursor: pointer;
+            z-index: 1001;
+        }
+
         @media (max-width: 992px) {
             header {
                 padding: 20px 5%;
@@ -732,9 +740,33 @@
         }
 
         @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
             nav {
-                display: none;
-                /* Add hamburger menu for mobile in real implementation */
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                text-align: center;
+                padding: 20px 0;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: var(--transition);
+                display: flex;
+            }
+
+            nav.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 20px;
             }
 
             section {
@@ -749,7 +781,10 @@
     <!-- Header / Navbar -->
     <header>
         <a href="#" class="logo">HAFIIDH Portofolio</a>
-        <nav>
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <nav id="nav-menu">
             <ul>
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -864,10 +899,10 @@
             </div>
             <!-- Project 3 -->
             <div class="portfolio-card">
-                <img src="assets/images/NEX2.jpg" alt="E-Commerce Web">
+                <img src="assets/images/inventory (1).jpg" alt="System Inventory Toko">
                 <div class="portfolio-overlay">
                     <h3>System Inventory Toko</h3>
-                    <p>Modern Online Shopping Platform</p>
+                    <p>Modern Inventory Management System</p>
                     <a href="project-ecommerce.html" class="btn-view">View Details</a>
                 </div>
             </div>
@@ -973,6 +1008,16 @@
                 header.style.padding = '20px 8%';
             }
         });
+
+        // Mobile menu toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+
+        if(mobileMenu) {
+            mobileMenu.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        }
     </script>
 </body>
 
