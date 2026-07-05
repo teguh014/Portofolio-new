@@ -1,53 +1,358 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV-KITA Builder - Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         /* CSS from gor-blotan to keep consistency */
-        :root { --primary: #6c5ce7; --primary-hover: #8e7dfa; --secondary: #d1d821; --dark: #0f172a; --text: #334155; --light: #f8fafc; --white: #ffffff; --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; scroll-behavior: smooth; }
-        body { background-color: var(--light); color: var(--text); overflow-x: hidden; line-height: 1.6; }
-        header { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 15px 8%; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); z-index: 1000; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); transition: var(--transition); }
-        .logo { font-size: 24px; font-weight: 900; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; text-decoration: none; }
-        nav ul { list-style: none; display: flex; gap: 30px; }
-        nav ul li a { text-decoration: none; color: var(--dark); font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; transition: var(--transition); position: relative; }
-        nav ul li a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--primary); transition: var(--transition); }
-        nav ul li a:hover::after, nav ul li a.active::after { width: 100%; }
-        nav ul li a:hover, nav ul li a.active { color: var(--primary); }
-        .project-hero { padding: 150px 8% 80px; background: linear-gradient(135deg, rgba(108, 92, 231, 0.05), transparent); text-align: center; }
-        .project-hero h1 { font-size: 48px; font-weight: 800; color: var(--dark); margin-bottom: 20px; animation: slideInUp 0.8s ease forwards; }
-        .project-meta { display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; color: #64748b; font-weight: 500; }
-        .meta-item { display: flex; align-items: center; gap: 10px; }
-        .meta-item i { color: var(--primary); }
-        .btn-back { display: inline-flex; align-items: center; gap: 10px; padding: 12px 30px; background: transparent; color: var(--dark); border: 2px solid var(--dark); border-radius: 50px; text-decoration: none; font-weight: 600; transition: var(--transition); }
-        .btn-back:hover { background: var(--dark); color: var(--white); transform: translateY(-2px); }
-        .project-image-container { padding: 0 8%; margin-bottom: 80px; margin-top: -40px; }
-        .project-main-image { width: 100%; height: auto; border-radius: 20px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); max-height: 600px; object-fit: cover; display: block; }
-        .project-content { padding: 0 8% 100px; display: grid; grid-template-columns: 2fr 1fr; gap: 60px; }
-        .content-main h2 { font-size: 32px; color: var(--dark); margin-bottom: 25px; }
-        .content-main p { font-size: 18px; color: var(--text); margin-bottom: 20px; line-height: 1.8; }
-        .features-list { list-style: none; margin-top: 30px; }
-        .features-list li { position: relative; padding-left: 30px; margin-bottom: 15px; font-size: 16px; }
-        .features-list li::before { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; left: 0; color: var(--primary); }
-        .sidebar { background: var(--white); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); height: fit-content; }
-        .sidebar h3 { font-size: 20px; color: var(--dark); margin-bottom: 20px; border-bottom: 2px solid var(--light); padding-bottom: 10px; }
-        .tech-tags { display: flex; flex-wrap: wrap; gap: 10px; }
-        .tech-tag { background: rgba(108, 92, 231, 0.1); color: var(--primary); padding: 8px 15px; border-radius: 8px; font-size: 14px; font-weight: 600; }
-        footer { background: #0b1120; padding: 30px 8%; text-align: center; color: #64748b; display: flex; justify-content: space-between; align-items: center; }
-        .social-links { display: flex; gap: 15px; }
-        .social-links a { width: 40px; height: 40px; background: rgba(255, 255, 255, 0.05); display: flex; align-items: center; justify-content: center; border-radius: 50%; color: var(--white); text-decoration: none; transition: var(--transition); }
-        .social-links a:hover { background: var(--primary); transform: translateY(-3px); }
-        @keyframes slideInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @media (max-width: 992px) { .project-content { grid-template-columns: 1fr; } .project-hero h1 { font-size: 36px; } .project-meta { flex-direction: column; gap: 15px; align-items: center; } }
+        :root {
+            --primary: #6c5ce7;
+            --primary-hover: #8e7dfa;
+            --secondary: #d1d821;
+            --dark: #0f172a;
+            --text: #334155;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 8%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 100%;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: var(--primary);
+        }
+
+        .project-hero {
+            padding: 150px 8% 80px;
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.05), transparent);
+            text-align: center;
+        }
+
+        .project-hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 20px;
+            animation: slideInUp 0.8s ease forwards;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .meta-item i {
+            color: var(--primary);
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 30px;
+            background: transparent;
+            color: var(--dark);
+            border: 2px solid var(--dark);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-back:hover {
+            background: var(--dark);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .project-image-container {
+            padding: 0 8%;
+            margin-bottom: 80px;
+            margin-top: -40px;
+        }
+
+        .project-main-image {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            max-height: 600px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .project-content {
+            padding: 0 8% 100px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+        }
+
+        .content-main h2 {
+            font-size: 32px;
+            color: var(--dark);
+            margin-bottom: 25px;
+        }
+
+        .content-main p {
+            font-size: 18px;
+            color: var(--text);
+            margin-bottom: 20px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .features-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .features-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        .sidebar {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+        }
+
+        .sidebar h3 {
+            font-size: 20px;
+            color: var(--dark);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--light);
+            padding-bottom: 10px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech-tag {
+            background: rgba(108, 92, 231, 0.1);
+            color: var(--primary);
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        footer {
+            background: #0b1120;
+            padding: 30px 8%;
+            text-align: center;
+            color: #64748b;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .project-content {
+                grid-template-columns: 1fr;
+            }
+
+            .project-hero h1 {
+                font-size: 36px;
+            }
+
+            .project-meta {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+        }
+
+        /* Slider Styles */
+        .slider-container {
+            position: relative;
+            max-width: 100%;
+        }
+
+        .slide {
+            display: none;
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: .4
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        .slider-dots {
+            text-align: center;
+            margin-top: -40px;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .dot.active,
+        .dot:hover {
+            background-color: var(--primary);
+        }
     </style>
 </head>
+
 <body>
     <header>
         <a href="index.html" class="logo">HAFIIDH Portofolio</a>
@@ -70,16 +375,42 @@
         <a href="index.html#portfolio" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Kembali ke Portfolio</a>
     </section>
 
-    <div class="project-image-container">
-        <img src="assets/images/FNL1.jpg" alt="CV-KITA App Dashboard" class="project-main-image">
+    <div class="project-image-container slider-container">
+        <div class="slide">
+            <img src="assets/images/cvkita1.jpg" alt="CV-KITA App Dashboard 1" class="project-main-image">
+        </div>
+        <div class="slide">
+            <img src="assets/images/cvkita2.jpg" alt="CV-KITA App Dashboard 2" class="project-main-image">
+        </div>
+        <div class="slide">
+            <img src="assets/images/cvkita3.jpg" alt="CV-KITA App Dashboard 3" class="project-main-image">
+        </div>
+        <div class="slide">
+            <img src="assets/images/cvkita4.jpg" alt="CV-KITA App Dashboard 4" class="project-main-image">
+        </div>
+        <div class="slide">
+            <img src="assets/images/cvkita5.jpg" alt="CV-KITA App Dashboard 5" class="project-main-image">
+        </div>
+
+        <div class="slider-dots">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+        </div>
     </div>
 
     <section class="project-content">
         <div class="content-main">
             <h2>Tentang Proyek</h2>
-            <p>CV-KITA adalah platform pembuatan Curriculum Vitae (CV) yang dinamis dan interaktif. Aplikasi ini dirancang untuk membantu para pencari kerja (job seekers) menyusun resume profesional mereka secara cepat dengan berbagai pilihan template premium (Classic, Modern, Minimalist).</p>
-            <p>Fitur andalan dari sistem ini adalah live-preview, di mana pengguna dapat melihat perubahan desain dan konten CV mereka secara real-time. Hasil akhir dari CV dapat diunduh dalam format PDF berkualitas tinggi yang siap dikirimkan ke perusahaan.</p>
-            
+            <p>CV-KITA adalah platform pembuatan Curriculum Vitae (CV) yang dinamis dan interaktif. Aplikasi ini
+                dirancang untuk membantu para pencari kerja (job seekers) menyusun resume profesional mereka secara
+                cepat dengan berbagai pilihan template premium (Classic, Modern, Minimalist).</p>
+            <p>Fitur andalan dari sistem ini adalah live-preview, di mana pengguna dapat melihat perubahan desain dan
+                konten CV mereka secara real-time. Hasil akhir dari CV dapat diunduh dalam format PDF berkualitas tinggi
+                yang siap dikirimkan ke perusahaan.</p>
+
             <h3 style="margin-top: 40px; margin-bottom: 20px; font-size: 24px;">Fitur Utama</h3>
             <ul class="features-list">
                 <li>Dynamic Form Builder untuk Data Personal & Profesional</li>
@@ -99,7 +430,9 @@
                 <span class="tech-tag">Tailwind CSS</span>
             </div>
             <h3 style="margin-top: 40px;">Live Preview</h3>
-            <a href="#" style="display: block; text-align: center; background: var(--primary); color: white; text-decoration: none; padding: 12px; border-radius: 8px; font-weight: 600; margin-top: 15px;">Kunjungi Website <i class="fa-solid fa-external-link-alt" style="margin-left: 8px; font-size: 14px;"></i></a>
+            <a href="https://github.com/teguh014/CVkita.git"
+                style="display: block; text-align: center; background: var(--primary); color: white; text-decoration: none; padding: 12px; border-radius: 8px; font-weight: 600; margin-top: 15px;">Kunjungi
+                Website <i class="fa-solid fa-external-link-alt" style="margin-left: 8px; font-size: 14px;"></i></a>
         </div>
     </section>
 
@@ -112,5 +445,51 @@
             <a href="#"><i class="fa-brands fa-twitter"></i></a>
         </div>
     </footer>
+
+    <!-- Slider Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let slideIndex = 1;
+            let slideInterval;
+
+            const slides = document.getElementsByClassName("slide");
+            const dots = document.getElementsByClassName("dot");
+
+            function showSlides(n) {
+                if (slides.length === 0) return;
+
+                if (n !== undefined) {
+                    slideIndex = n;
+                    clearInterval(slideInterval);
+                    slideInterval = setInterval(() => showSlides(), 4000);
+                } else {
+                    slideIndex++;
+                }
+
+                if (slideIndex > slides.length) { slideIndex = 1 }
+                if (slideIndex < 1) { slideIndex = slides.length }
+
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                for (let i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+
+                slides[slideIndex - 1].style.display = "block";
+                if (dots.length > 0) dots[slideIndex - 1].className += " active";
+            }
+
+            // Expose for onclick in HTML
+            window.currentSlide = function (n) {
+                showSlides(n);
+            }
+
+            // Initialize
+            showSlides(slideIndex);
+            slideInterval = setInterval(() => showSlides(), 4000);
+        });
+    </script>
 </body>
+
 </html>
